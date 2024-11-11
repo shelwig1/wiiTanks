@@ -1,0 +1,118 @@
+[gd_scene load_steps=15 format=3 uid="uid://dqp0kuw3hu8ia"]
+
+[ext_resource type="Script" path="res://Tanks/player_tank_redux.gd" id="1_qeho4"]
+[ext_resource type="Script" path="res://Tanks/Turret.gd" id="2_t5q0s"]
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_g480c"]
+radius = 5.0
+height = 20.0
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_peqv5"]
+albedo_color = Color(0.282353, 0.639216, 1, 1)
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_6mvex"]
+material = SubResource("StandardMaterial3D_peqv5")
+top_radius = 2.0
+bottom_radius = 2.0
+height = 20.0
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_3x6ae"]
+albedo_color = Color(0.282353, 0.639216, 1, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_fyny6"]
+material = SubResource("StandardMaterial3D_3x6ae")
+size = Vector3(20, 10, 25)
+
+[sub_resource type="BoxMesh" id="BoxMesh_tnole"]
+size = Vector3(5, 5, 5)
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_2yl5o"]
+points = PackedVector3Array(3.77269, 6.49876, 2.88587, -4.84607, -5.96812, -0.666007, -4.82863, -5.94699, 0.822098, 3.83739, -8.11555, -0.671462, -0.668425, 6.88599, -4.56216, -3.64126, 7.73831, 2.01324, 0.52579, -6.56416, 4.7056, 2.57892, -5.8801, -4.18441, 4.37694, 6.8161, -1.55042, -1.83497, 5.00769, 4.64675, -2.4624, -8.07182, -3.0604, -4.48748, 5.3035, -2.13027, 0.84238, 9.77463, 1.14838, 4.64174, -5.59037, 1.69778, -0.986106, -9.75128, 1.14582, -2.12993, -5.30268, -4.48772, -3.28246, -5.26216, 3.73402, 1.69778, 5.59037, 4.64174, 1.40743, 5.01891, -4.79401, -1.28923, 9.42619, -1.89641, -4.7938, 5.0187, 1.40832, 4.64675, -5.00769, -1.83497, 2.88587, -6.49876, 3.77269, 0.532475, -9.08567, -2.79783, 4.98882, 4.75789, 0.227379, 3.48949, 6.22595, -3.33076, -0.671462, 8.11555, 3.83739, 1.73941, 8.75445, -2.78816, -0.666006, -5.96811, -4.84606, -3.0072, 5.87809, -3.88948, -4.17226, -5.27739, -2.70579, 2.33898, -9.03844, 1.73635)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_mu6y3"]
+albedo_color = Color(1, 0, 1, 1)
+
+[sub_resource type="SphereMesh" id="SphereMesh_bnb1d"]
+material = SubResource("StandardMaterial3D_mu6y3")
+radius = 5.0
+height = 10.0
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_xhnde"]
+points = PackedVector3Array(-9.80774, -5, -12.2076, 9.80568, 5, 12.4029, -9.9634, 5, 12.4029, 9.80568, 5, -12.4029, 9.65002, -5, 12.2076, -9.9634, 5, -12.4029, -9.80774, -5, 12.2076, 9.65002, -5, -12.2076)
+
+[sub_resource type="Animation" id="Animation_7yyut"]
+resource_name = "shoot"
+length = 0.3
+tracks/0/type = "method"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"values": [{
+"args": [],
+"method": &"stop_movement"
+}, {
+"args": [],
+"method": &"start_movement"
+}]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_hq505"]
+_data = {
+"shoot": SubResource("Animation_7yyut")
+}
+
+[node name="Player_Tank" type="CharacterBody3D" groups=["player"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 9.8, 0)
+script = ExtResource("1_qeho4")
+
+[node name="Turret" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.37019, 0)
+mesh = SubResource("CapsuleMesh_g480c")
+script = ExtResource("2_t5q0s")
+
+[node name="Direction_Arrow" type="MeshInstance3D" parent="Turret"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 4.62784, -11.3065)
+mesh = SubResource("CylinderMesh_6mvex")
+skeleton = NodePath("../..")
+
+[node name="Barrel" type="Marker3D" parent="Turret/Direction_Arrow"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -9.85687, 0)
+
+[node name="Tank_Body" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.16257, 0)
+mesh = SubResource("BoxMesh_fyny6")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Tank_Body"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 12.7024)
+mesh = SubResource("BoxMesh_tnole")
+
+[node name="Tread Origin" type="Node3D" parent="Tank_Body"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7, -4.62636, 12.8018)
+
+[node name="Tread Origin2" type="Node3D" parent="Tank_Body"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.94904, -4.62636, 12.8018)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.20417, 0)
+shape = SubResource("ConvexPolygonShape3D_2yl5o")
+
+[node name="MousePos" type="Node3D" parent="."]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="MousePos"]
+mesh = SubResource("SphereMesh_bnb1d")
+
+[node name="Turret_Guide" type="Node3D" parent="."]
+
+[node name="Tank_Body_Collision" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.16257, 0)
+shape = SubResource("ConvexPolygonShape3D_xhnde")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_hq505")
+}

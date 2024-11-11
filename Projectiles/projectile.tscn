@@ -1,0 +1,58 @@
+[gd_scene load_steps=8 format=3 uid="uid://dplmyg5wm6kah"]
+
+[ext_resource type="Script" path="res://Projectiles/projectile.gd" id="1_gp1un"]
+[ext_resource type="Script" path="res://Projectiles/projectile_type.gd" id="2_0c3lw"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_p60ah"]
+friction = 0.0
+bounce = 1.0
+
+[sub_resource type="Resource" id="Resource_4irxp"]
+script = ExtResource("2_0c3lw")
+name = "standard"
+speed = 5.0
+number_of_bounces = 2
+
+[sub_resource type="SphereMesh" id="SphereMesh_3kgg5"]
+radius = 1.5
+height = 6.268
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_k5mgy"]
+radius = 0.811581
+height = 5.48854
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_6vdl1"]
+radius = 1.62111
+
+[node name="projectile" type="RigidBody3D"]
+top_level = true
+axis_lock_linear_y = true
+axis_lock_angular_x = true
+axis_lock_angular_y = true
+axis_lock_angular_z = true
+physics_material_override = SubResource("PhysicsMaterial_p60ah")
+gravity_scale = 0.0
+max_contacts_reported = 2
+contact_monitor = true
+angular_damp_mode = 1
+script = ExtResource("1_gp1un")
+projectile_data = SubResource("Resource_4irxp")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0)
+mesh = SubResource("SphereMesh_3kgg5")
+
+[node name="Area3D" type="Area3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0)
+shape = SubResource("CapsuleShape3D_k5mgy")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0)
+shape = SubResource("SphereShape3D_6vdl1")
+
+[node name="CPUParticles3D" type="CPUParticles3D" parent="."]
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="body_entered" from="Area3D" to="." method="_on_area_3d_body_entered"]

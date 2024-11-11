@@ -1,0 +1,21 @@
+[gd_scene load_steps=4 format=3 uid="uid://b6axx51e1hp4n"]
+
+[ext_resource type="Script" path="res://Player_Tank.gd" id="1_8hyvi"]
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_g480c"]
+radius = 5.0
+height = 20.0
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_2yl5o"]
+points = PackedVector3Array(3.77269, 6.49876, 2.88587, -4.84607, -5.96812, -0.666007, -4.82863, -5.94699, 0.822098, 3.83739, -8.11555, -0.671462, -0.668425, 6.88599, -4.56216, -3.64126, 7.73831, 2.01324, 0.52579, -6.56416, 4.7056, 2.57892, -5.8801, -4.18441, 4.37694, 6.8161, -1.55042, -1.83497, 5.00769, 4.64675, -2.4624, -8.07182, -3.0604, -4.48748, 5.3035, -2.13027, 0.84238, 9.77463, 1.14838, 4.64174, -5.59037, 1.69778, -0.986106, -9.75128, 1.14582, -2.12993, -5.30268, -4.48772, -3.28246, -5.26216, 3.73402, 1.69778, 5.59037, 4.64174, 1.40743, 5.01891, -4.79401, -1.28923, 9.42619, -1.89641, -4.7938, 5.0187, 1.40832, 4.64675, -5.00769, -1.83497, 2.88587, -6.49876, 3.77269, 0.532475, -9.08567, -2.79783, 4.98882, 4.75789, 0.227379, 3.48949, 6.22595, -3.33076, -0.671462, 8.11555, 3.83739, 1.73941, 8.75445, -2.78816, -0.666006, -5.96811, -4.84606, -3.0072, 5.87809, -3.88948, -4.17226, -5.27739, -2.70579, 2.33898, -9.03844, 1.73635)
+
+[node name="Tank" type="CharacterBody3D"]
+script = ExtResource("1_8hyvi")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 41, 0)
+mesh = SubResource("CapsuleMesh_g480c")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 41, 0)
+shape = SubResource("ConvexPolygonShape3D_2yl5o")

@@ -1,0 +1,101 @@
+[gd_scene load_steps=13 format=3 uid="uid://c03o5pyalobk1"]
+
+[ext_resource type="Texture2D" uid="uid://g08jjvc0prg3" path="res://Textures/Prototyping/Purple/texture_09.png" id="1_a54dk"]
+[ext_resource type="PackedScene" uid="uid://dqp0kuw3hu8ia" path="res://Tanks/player_tank.tscn" id="1_e0mo2"]
+[ext_resource type="Script" path="res://Test Scene/Camera3D.gd" id="1_gqkr7"]
+[ext_resource type="Texture2D" uid="uid://dc2y7fisipha4" path="res://Textures/Prototyping/Vector/texture_01.svg" id="4_m221u"]
+[ext_resource type="PackedScene" uid="uid://bgnlc62doxiuh" path="res://Tread Decal/tread_decal.tscn" id="5_jyamq"]
+[ext_resource type="PackedScene" uid="uid://w6ji885dojxb" path="res://Tanks/enemy_tank.tscn" id="6_jw8w6"]
+
+[sub_resource type="Environment" id="Environment_q1k16"]
+background_mode = 1
+background_color = Color(0.0901961, 0.0901961, 0.0901961, 1)
+background_energy_multiplier = 6.0
+ambient_light_source = 2
+ambient_light_color = Color(0.780392, 0.780392, 0.780392, 1)
+ambient_light_energy = 2.25
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_3sy0w"]
+albedo_color = Color(0.439216, 0.733333, 1, 1)
+albedo_texture = ExtResource("4_m221u")
+uv1_scale = Vector3(3.83, 3.83, 3.83)
+uv1_triplanar_sharpness = 0.120742
+
+[sub_resource type="NavigationMesh" id="NavigationMesh_ouku6"]
+vertices = PackedVector3Array(-199.5, 0.5, -99.5, -199.5, 0.5, 99.5, 199.5, 0.5, 99.5, 199.5, 0.5, -99.5)
+polygons = [PackedInt32Array(3, 2, 0), PackedInt32Array(0, 2, 1)]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_hgmhx"]
+albedo_color = Color(1, 0.941176, 0.278431, 1)
+albedo_texture = ExtResource("1_a54dk")
+uv1_scale = Vector3(3.005, 2.09, 2.09)
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_g016q"]
+size = Vector2(400, 200)
+
+[sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_fd21e"]
+data = PackedVector3Array(200, 0, 100, -200, 0, 100, 200, 0, -100, -200, 0, 100, -200, 0, -100, 200, 0, -100)
+
+[node name="Node3D" type="Node3D"]
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.345904, 0.93827, 0, -0.93827, 0.345904, 0, 170, 80)
+current = true
+script = ExtResource("1_gqkr7")
+
+[node name="Player_Tank" parent="." instance=ExtResource("1_e0mo2")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.48524, 0)
+TANK_BODY_ROTATION_SPEED = 5
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_q1k16")
+
+[node name="Camera3D2" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 53.0876, 117.695)
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -0.337588, 0.941294, 0, -0.941294, -0.337588, 0, 190.471, 0)
+
+[node name="CSGBox3D" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.382538, -0.995819, -99.3725)
+use_collision = true
+size = Vector3(400.468, 57.6874, 1)
+material = SubResource("StandardMaterial3D_3sy0w")
+
+[node name="CSGBox3D" type="CSGBox3D" parent="CSGBox3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.382538, -6.42313, 201.963)
+use_collision = true
+size = Vector3(400.468, 57.6874, 1)
+material = SubResource("StandardMaterial3D_3sy0w")
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="CSGBox3D"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 199.381, -7.9649, 101.927)
+use_collision = true
+size = Vector3(212.806, 57.6874, 1)
+material = SubResource("StandardMaterial3D_3sy0w")
+
+[node name="CSGBox3D3" type="CSGBox3D" parent="CSGBox3D"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -197.851, -6.42313, 97.4569)
+use_collision = true
+size = Vector3(214.004, 57.6874, 1)
+material = SubResource("StandardMaterial3D_3sy0w")
+
+[node name="Tread Decal" parent="." instance=ExtResource("5_jyamq")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 53.057, -0.0404282, 0)
+
+[node name="Enemy_Tank" parent="." instance=ExtResource("6_jw8w6")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -101, 4.485, -12)
+SPEED = 20
+
+[node name="NavigationRegion3D" type="NavigationRegion3D" parent="."]
+navigation_mesh = SubResource("NavigationMesh_ouku6")
+
+[node name="Ground" type="MeshInstance3D" parent="NavigationRegion3D"]
+material_override = SubResource("StandardMaterial3D_hgmhx")
+mesh = SubResource("PlaneMesh_g016q")
+skeleton = NodePath("../..")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="NavigationRegion3D/Ground"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="NavigationRegion3D/Ground/StaticBody3D"]
+shape = SubResource("ConcavePolygonShape3D_fd21e")

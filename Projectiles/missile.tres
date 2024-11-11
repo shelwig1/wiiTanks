@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="projectile_type" load_steps=2 format=3 uid="uid://whklup6h8ipd"]
+
+[ext_resource type="Script" path="res://Projectiles/projectile_type.gd" id="1_x81xk"]
+
+[resource]
+script = ExtResource("1_x81xk")
+name = "missile"
+speed = 0.0
+number_of_bounces = 0

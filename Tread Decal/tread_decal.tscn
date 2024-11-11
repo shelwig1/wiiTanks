@@ -1,0 +1,12 @@
+[gd_scene load_steps=3 format=3 uid="uid://bgnlc62doxiuh"]
+
+[ext_resource type="Texture2D" uid="uid://bm18y6uoulrsx" path="res://Tread Decal/tread_fix.png" id="1_fpwk4"]
+[ext_resource type="Script" path="res://Tread Decal/tread_decal.gd" id="2_si78p"]
+
+[node name="Tread Decal" type="Decal"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.83486, 0)
+size = Vector3(7.21538, 4.95531, 7.81362)
+texture_albedo = ExtResource("1_fpwk4")
+script = ExtResource("2_si78p")
+initial_lifetime = 5.0
+decay_time = 3.0

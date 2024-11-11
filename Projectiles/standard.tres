@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="projectile_type" load_steps=2 format=3 uid="uid://ckye4ui7bwryi"]
+
+[ext_resource type="Script" path="res://Projectiles/projectile_type.gd" id="1_80g72"]
+
+[resource]
+script = ExtResource("1_80g72")
+name = "standard"
+speed = 0.0
+number_of_bounces = 0
