@@ -1,7 +1,7 @@
 extends Tank
 
 @onready var navigation_agent = $NavigationAgent3D
-
+@export var ATTACK_RANGE = 30
 #need to add turret control
 
 #need to add a navigation agent into the mix
@@ -27,6 +27,9 @@ func _physics_process(delta):
 	#var new_velocity: Vector3 = global_position.direction_to(next_path_position) * SPEED
 	var direction = (player.global_transform.origin - global_position).normalized()
 	
+	direction = round_direction(direction)
+	
+	
 	var new_velocity = direction * SPEED
 	
 	if navigation_agent.avoidance_enabled:
@@ -37,8 +40,31 @@ func _physics_process(delta):
 	rotate_tank_body(delta, direction)
 	check_tread()
 
+func round_direction(direction: Vector3) -> Vector3:
+	# 1, 0, .7 and their negatives
+	
+	for i in range(3):
+		# curr_val is always positive now
+		var value = direction[i]
+		
+		var options = [-1.0, -0.7, 0.0, 0.7, 1.0]
+		var closest = options[0]
+		var min_difference = abs(value - closest)
+
+		for option in options:
+			var difference = abs(value - option)
+			if difference < min_difference:
+				closest = option
+				min_difference = difference
+
+		direction[i] =  closest
+	
+	return direction
+		
+
 func _on_velocity_computed(safe_velocity: Vector3):
 	velocity = safe_velocity
+	
 	move_and_slide()
 	
 func _process(delta):
