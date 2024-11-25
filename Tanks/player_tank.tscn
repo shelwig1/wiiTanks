@@ -141,3 +141,27 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 15.278, 0)
 material_override = ExtResource("4_blmww")
 mesh = SubResource("ArrayMesh_vhl7c")
 script = ExtResource("4_h04po")
+
+[node name="Radar2" type="RayCast3D" parent="Danger_Zone"]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, 5, 0)
+target_position = Vector3(0, 0, -500)
+
+[node name="Pointer" type="MeshInstance3D" parent="Danger_Zone/Radar2"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, -47)
+mesh = SubResource("CylinderMesh_b4mn2")
+
+[node name="Radar3" type="RayCast3D" parent="Danger_Zone"]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 5, 0)
+target_position = Vector3(0, 0, -500)
+
+[node name="Pointer" type="MeshInstance3D" parent="Danger_Zone/Radar3"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, -47)
+mesh = SubResource("CylinderMesh_b4mn2")
+
+[node name="Radar4" type="RayCast3D" parent="Danger_Zone"]
+transform = Transform3D(1.19249e-08, 0, 1, 0, 1, 0, -1, 0, 1.19249e-08, 0, 5, 0)
+target_position = Vector3(0, 0, -500)
+
+[node name="Pointer" type="MeshInstance3D" parent="Danger_Zone/Radar4"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, -47)
+mesh = SubResource("CylinderMesh_b4mn2")

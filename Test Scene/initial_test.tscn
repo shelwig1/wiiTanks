@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://c03o5pyalobk1"]
+[gd_scene load_steps=15 format=3 uid="uid://c03o5pyalobk1"]
 
 [ext_resource type="Texture2D" uid="uid://g08jjvc0prg3" path="res://Textures/Prototyping/Purple/texture_09.png" id="1_a54dk"]
 [ext_resource type="PackedScene" uid="uid://dqp0kuw3hu8ia" path="res://Tanks/player_tank.tscn" id="1_e0mo2"]
@@ -7,6 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://dc2y7fisipha4" path="res://Textures/Prototyping/Vector/texture_01.svg" id="4_m221u"]
 [ext_resource type="PackedScene" uid="uid://8detlv8gvew0" path="res://Objects/Wall.tscn" id="5_fi4bw"]
 [ext_resource type="PackedScene" uid="uid://w6ji885dojxb" path="res://Tanks/enemy_tank.tscn" id="6_jw8w6"]
+[ext_resource type="Script" path="res://Test Scene/GridMap.gd" id="6_sd4xc"]
 
 [sub_resource type="Environment" id="Environment_q1k16"]
 background_mode = 1
@@ -21,7 +22,7 @@ vertices = PackedVector3Array(-199.5, 0.5, -99.5, -199.5, 0.5, 99.5, 199.5, 0.5,
 polygons = [PackedInt32Array(3, 2, 0), PackedInt32Array(0, 2, 1)]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_hgmhx"]
-albedo_color = Color(1, 0.941176, 0.278431, 1)
+albedo_color = Color(1, 0, 0.278431, 0)
 albedo_texture = ExtResource("1_a54dk")
 uv1_scale = Vector3(3.005, 2.09, 2.09)
 
@@ -75,6 +76,10 @@ transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -51.26
 
 [node name="MeshInstance3D" parent="WorldEnvironment/NavigationRegion3D/Ground/MeshInstance3D/MeshInstance3D" instance=ExtResource("5_fi4bw")]
 transform = Transform3D(-0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, -0.707107, -2.73163, 0.708233, -105.041)
+
+[node name="GridMap" type="GridMap" parent="WorldEnvironment/NavigationRegion3D/Ground"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.82314, 0)
+script = ExtResource("6_sd4xc")
 
 [node name="Camera3D2" type="Camera3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 53.0876, 117.695)

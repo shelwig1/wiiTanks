@@ -1,4 +1,6 @@
-[gd_scene load_steps=3 format=3 uid="uid://8detlv8gvew0"]
+[gd_scene load_steps=4 format=3 uid="uid://8detlv8gvew0"]
+
+[ext_resource type="Script" path="res://Objects/Wall.gd" id="1_qnyyi"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_bweu5"]
 size = Vector3(50, 20, 1)
@@ -9,8 +11,15 @@ data = PackedVector3Array(-25, 10, 0.5, 25, 10, 0.5, -25, -10, 0.5, 25, 10, 0.5,
 [node name="MeshInstance3D" type="MeshInstance3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 10, 0)
 mesh = SubResource("BoxMesh_bweu5")
+script = ExtResource("1_qnyyi")
 
 [node name="StaticBody3D2" type="StaticBody3D" parent="."]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D2"]
 shape = SubResource("ConcavePolygonShape3D_rrvsw")
+
+[node name="Marker3D" type="Marker3D" parent="." groups=["exposure"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 25.6284, 0, 0)
+
+[node name="Marker3D2" type="Marker3D" parent="." groups=["exposure"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -25.8635, 0, 0)
