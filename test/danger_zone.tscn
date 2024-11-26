@@ -1,0 +1,51 @@
+[gd_scene load_steps=6 format=3 uid="uid://hkqc0kk7ffdq"]
+
+[ext_resource type="Script" path="res://Tanks/Danger_Zone.gd" id="1_oqaqj"]
+[ext_resource type="Material" uid="uid://bxocv4hnio1s3" path="res://Objects/test_material.tres" id="2_jbjoa"]
+[ext_resource type="Script" path="res://Tanks/Exposure_Shape.gd" id="3_mhc46"]
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_b4mn2"]
+height = 69.869
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_vhl7c"]
+
+[node name="Danger_Zone" type="Node3D"]
+script = ExtResource("1_oqaqj")
+
+[node name="Radar" type="RayCast3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5, 0)
+target_position = Vector3(0, 0, -500)
+
+[node name="Pointer" type="MeshInstance3D" parent="Radar"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, -47)
+mesh = SubResource("CylinderMesh_b4mn2")
+
+[node name="Exposure_Shape" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 15.278, 0)
+material_override = ExtResource("2_jbjoa")
+mesh = SubResource("ArrayMesh_vhl7c")
+script = ExtResource("3_mhc46")
+
+[node name="Radar2" type="RayCast3D" parent="."]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, 5, 0)
+target_position = Vector3(0, 0, -500)
+
+[node name="Pointer" type="MeshInstance3D" parent="Radar2"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, -47)
+mesh = SubResource("CylinderMesh_b4mn2")
+
+[node name="Radar3" type="RayCast3D" parent="."]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 5, 0)
+target_position = Vector3(0, 0, -500)
+
+[node name="Pointer" type="MeshInstance3D" parent="Radar3"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, -47)
+mesh = SubResource("CylinderMesh_b4mn2")
+
+[node name="Radar4" type="RayCast3D" parent="."]
+transform = Transform3D(1.19249e-08, 0, 1, 0, 1, 0, -1, 0, 1.19249e-08, 0, 5, 0)
+target_position = Vector3(0, 0, -500)
+
+[node name="Pointer" type="MeshInstance3D" parent="Radar4"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, -47)
+mesh = SubResource("CylinderMesh_b4mn2")

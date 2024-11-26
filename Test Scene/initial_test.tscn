@@ -79,6 +79,7 @@ transform = Transform3D(-0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, -0.707107
 
 [node name="GridMap" type="GridMap" parent="WorldEnvironment/NavigationRegion3D/Ground"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.82314, 0)
+cell_size = Vector3(8, 8, 8)
 script = ExtResource("6_sd4xc")
 
 [node name="Camera3D2" type="Camera3D" parent="."]

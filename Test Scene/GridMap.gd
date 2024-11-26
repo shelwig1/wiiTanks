@@ -1,11 +1,12 @@
 extends GridMap
 
-const EXPOSED = preload("res://Exposure Grid Materials/exposed.tres")
 const RAY_EXPOSURE = preload("res://Exposure Grid Materials/ray_exposure.tscn")
 @onready var ground = $".."
 const material_exposed = preload("res://Exposure Grid Materials/exposed.tres")
-@onready var material_safe = $"res://Exposure Grid Materials/safe.tres"
+const material_safe = preload("res://Exposure Grid Materials/safe.tres")
 # Called when the node enters the scene tree for the first time.
+var grid_size
+
 func _ready():
 	#var terrain_size = Vector3(ground.get_aabb().size)
 	var terrain_size = ground.get_aabb().size
@@ -37,6 +38,11 @@ func create_grid(grid_size, cell_size):
 			cell.material_override = material_exposed
 			
 			cell.set_position(Vector3(x * cell_size[0] - 200, 0, y * cell_size[0] - 100))
+			
+			cell.name = str(x) + " , " + str(y)
+			
+			var ray = RAY_EXPOSURE.instantiate()
+			cell.add_child(ray)
 			add_child(cell)
 
 func create_grid_invisible(grid_size, cell_size):
@@ -47,6 +53,6 @@ func create_grid_invisible(grid_size, cell_size):
 			add_child(cell)
 			print("created cell")
 	
-# 
-func flood_fill():
+			
+	#for x in range()
 	pass

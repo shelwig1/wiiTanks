@@ -3,9 +3,9 @@ extends MeshInstance3D
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	var edges = find_perpendicular_edges_box(self)
-	for i in edges:
-		print(i)
+	#var edges = find_perpendicular_edges_box(self)
+	#for i in edges:
+	#print(i)
 	pass # Replace with function body.
 
 
